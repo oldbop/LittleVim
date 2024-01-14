@@ -33,23 +33,21 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
   {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup()
-    end
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      { "williamboman/mason.nvim", config = true },
+      "williamboman/mason-lspconfig.nvim"
+    }
   }
+
 })
 
+-- LSP configuration
+require("mason").setup()
+require("mason-lspconfig").setup()
 
-
---[[
-  {
-    "neovim/nvim-lspconfig"
-  }
---]]
+require("mason-lspconfig").setup_handlers {
+  function (server_name)
+    require("lspconfig")[server_name].setup {}
+  end
+}
