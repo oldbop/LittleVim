@@ -44,8 +44,17 @@ require("lazy").setup({
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim"
     }
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+    opts = {
+      options = { theme = "auto" },
+      sections = { lualine_a = { "hostname" }}
+    }
   }
-
 })
 
 -- LSP configuration
