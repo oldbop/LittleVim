@@ -46,16 +46,15 @@ require("lazy").setup({
     }
   },
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    opts = {
-      options = { theme = "auto" },
-      sections = { lualine_a = { "hostname" }}
-    }
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000
   }
 })
+
+-- Set colorscheme
+vim.cmd.colorscheme("moonfly")
 
 -- LSP configuration
 require("mason").setup()
