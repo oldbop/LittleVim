@@ -63,6 +63,7 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- LSP configuration
+vim.g.coq_settings = { "auto_start": "shut-up" }
 local coq = require("coq")
 
 require("mason").setup()
@@ -73,5 +74,3 @@ require("mason-lspconfig").setup_handlers {
     require("lspconfig")[server_name].setup(coq.lsp_ensure_capabilities{})
   end
 }
-
-vim.cmd("COQnow -s")
