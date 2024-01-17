@@ -63,6 +63,7 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- LSP configuration
+vim.g.coq_settings = { clients = { lsp = { resolve_timeout = 0.1 }}}
 local coq = require("coq")
 
 require("mason").setup()
