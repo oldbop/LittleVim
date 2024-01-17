@@ -32,6 +32,25 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--[[
+vim.g.coq_settings = {
+  auto_start = "shut-up",
+  clients = {
+    lsp = {
+      resolve_timeout = ?
+    }
+  },
+  display = {
+    pum = {
+      fast_close = true | false
+    }
+  },
+  limits = {
+    completion_auto_timeout = ?
+  }
+}
+--]]
+
 -- Coq.nvim settings
 vim.g.coq_settings = {
   auto_start = "shut-up"
