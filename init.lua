@@ -32,6 +32,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Coq.nvim settings
+vim.g.coq_settings = {
+  auto_start = "shut-up"
+}
+
 -- Plugin installation
 require("lazy").setup({
 
@@ -43,7 +48,10 @@ require("lazy").setup({
     }
   },
   {
-    "ms-jpq/coq_nvim"
+    "ms-jpq/coq_nvim",
+    dependencies = {
+      "ms-jpq/coq.artifacts"
+    }
   },
   {
     "bluz71/vim-moonfly-colors",
@@ -63,7 +71,6 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- LSP configuration
-vim.g.coq_settings = { clients = { lsp = { resolve_timeout = 0.1 }}}
 local coq = require("coq")
 
 require("mason").setup()
@@ -74,5 +81,3 @@ require("mason-lspconfig").setup_handlers {
     require("lspconfig")[server_name].setup(coq.lsp_ensure_capabilities{})
   end
 }
-
-vim.cmd("COQnow -s")
