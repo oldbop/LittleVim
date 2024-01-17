@@ -43,7 +43,8 @@ require("lazy").setup({
     }
   },
   {
-    "ms-jpq/coq_nvim"
+    "ms-jpq/coq_nvim",
+    lazy = false
   },
   {
     "bluz71/vim-moonfly-colors",
@@ -63,7 +64,7 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- LSP configuration
-vim.g.coq_settings = { "auto_start": "shut-up" }
+vim.g.coq_settings = { auto_start = 'shut-up', }
 local coq = require("coq")
 
 require("mason").setup()
