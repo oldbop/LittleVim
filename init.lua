@@ -65,11 +65,7 @@ vim.g.coq_settings = {
 require("lazy").setup({
 
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      { "williamboman/mason.nvim", config = true },
-      "williamboman/mason-lspconfig.nvim"
-    }
+    "neovim/nvim-lspconfig"
   },
   {
     "ms-jpq/coq_nvim",
@@ -95,13 +91,7 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- LSP configuration
+local lsp = require("lspconfig")
 local coq = require("coq")
 
-require("mason").setup()
-require("mason-lspconfig").setup()
-
-require("mason-lspconfig").setup_handlers {
-  function(server_name)
-    require("lspconfig")[server_name].setup(coq.lsp_ensure_capabilities{})
-  end
-}
+lsp.clangd.setup(coq.lsp_ensure_capabilities{})
