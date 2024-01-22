@@ -47,6 +47,7 @@ require("lazy").setup({
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
       "hrsh7th/cmp-vsnip",
       "hrsh7th/vim-vsnip"
     }
@@ -84,12 +85,18 @@ cmp.setup({
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true })
   }),
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "vsnip" },
-  }, {
-    { name = "buffer" }
-  })
+  sources = cmp.config.sources(
+    {
+      { name = "nvim_lsp" },
+      { name = "vsnip" }
+    },
+    {
+      { name = "path" }
+    },
+    {
+      { name = "buffer" }
+    }
+  )
 })
 
 -- LSP configuration
