@@ -32,45 +32,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---[[
-vim.g.coq_settings = {
-  auto_start = "shut-up",
-  clients = {
-    lsp = {
-      resolve_timeout = ?
-    }
-  },
-  display = {
-    pum = {
-      fast_close = true | false
-    }
-  },
-  limits = {
-    completion_auto_timeout = ?
-  }
-}
---]]
-
--- Coq.nvim settings
-vim.g.coq_settings = {
-  auto_start = "shut-up",
-  clients = {
-    tmux = {
-      enabled = false
-    }
-  }
-}
-
 -- Plugin installation
 require("lazy").setup({
 
   {
-    "neovim/nvim-lspconfig"
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      { "williamboman/mason.nvim", config = true },
+      "williamboman/mason-lspconfig.nvim"
+    }
   },
   {
-    "ms-jpq/coq_nvim",
+    "hrsh7th/nvim-cmp",
     dependencies = {
-      "ms-jpq/coq.artifacts"
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip"
     }
   },
   {
@@ -90,8 +68,40 @@ vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
--- LSP configuration
-local lsp = require("lspconfig")
-local coq = require("coq")
+-- Completion configuration
+local cmp = require("cmp")
 
-lsp.clangd.setup(coq.lsp_ensure_capabilities{})
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true })
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+  }, {
+    { name = "buffer" }
+  })
+})
+
+-- LSP configuration
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+require("mason-lspconfig").setup_handlers {
+  function(server_name)
+    require("lspconfig")[server_name].setup {
+      capabilities = capabilities
+    }
+  end
+}
