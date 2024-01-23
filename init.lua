@@ -1,5 +1,5 @@
 --[[
-        LittleVim: Minimal single-file Neovim configuration.
+        LittleVim: Minimal single-file Neovim configuration
         oldbop
 --]]
 
