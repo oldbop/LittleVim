@@ -64,6 +64,9 @@ require("lazy").setup({
 vim.cmd.colorscheme("moonfly")
 
 -- Keymaps
+vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
+vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
+
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
