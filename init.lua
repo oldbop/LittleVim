@@ -66,7 +66,9 @@ vim.cmd.colorscheme("moonfly")
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
-vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
+vim.keymap.set("n", "<leader>d", ":bd<cr>", { silent = true })
+vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
+vim.keymap.set("n", "<leader>e", ":E<cr>", { silent = true })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
@@ -120,6 +122,19 @@ cmp.setup({
 })
 
 -- LSP configuration
+vim.diagnostic.config({
+  virtual_text = false
+})
+
+vim.o.updatetime = 250
+
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+  callback = function ()
+    vim.diagnostic.open_float(nil, { focus = false })
+  end
+})
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason").setup()
