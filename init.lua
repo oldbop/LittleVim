@@ -66,6 +66,7 @@ vim.cmd.colorscheme("moonfly")
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
+vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
