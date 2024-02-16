@@ -18,6 +18,10 @@ set.tabstop = 2
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Disable netrw, nvim-tree.lua is used instead
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- lazy.nvim installation
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -38,7 +42,7 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim"
     }
   },
@@ -57,6 +61,25 @@ require("lazy").setup({
     name = "moonfly",
     lazy = false,
     priority = 1000
+  },
+  {
+    "akinsho/bufferline.nvim",
+    config = true,
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = { float = { enable = true }}
+    },
+    lazy = false,
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
   }
 })
 
@@ -68,7 +91,7 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>d", ":bd<cr>", { silent = true })
 vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
-vim.keymap.set("n", "<leader>e", ":E<cr>", { silent = true })
+vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<cr>", { silent = true })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
@@ -122,9 +145,7 @@ cmp.setup({
 })
 
 -- LSP configuration
-vim.diagnostic.config({
-  virtual_text = false
-})
+vim.diagnostic.config({ virtual_text = false })
 
 vim.o.updatetime = 250
 
