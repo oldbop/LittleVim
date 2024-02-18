@@ -73,7 +73,7 @@ require("lazy").setup({
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
-      view = { float = { enable = true }}
+      view = { float = { enable = true, open_win_config = { height = 20 }}}
     },
     lazy = false,
     version = "*",
