@@ -89,14 +89,14 @@ vim.cmd.colorscheme("moonfly")
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
-vim.keymap.set("n", "<leader>d", ":bd<cr>", { silent = true })
+vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
 vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
 vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<cr>", { silent = true })
 
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, {})
+vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 
 vim.keymap.set({ "i", "s" }, "<Tab>", function()
   if vim.fn["vsnip#jumpable"](1) == 1 then
