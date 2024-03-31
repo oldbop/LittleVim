@@ -18,7 +18,7 @@ set.tabstop = 2
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Disable netrw, nvim-tree.lua is used instead
+-- Disable netrw, neo-tree is used instead
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -71,14 +71,15 @@ require("lazy").setup({
     }
   },
   {
-    "nvim-tree/nvim-tree.lua",
+    "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      view = { float = { enable = true, open_win_config = { height = 20 }}}
+      window = { position = "float" }
     },
-    lazy = false,
-    version = "*",
+    branch = "v3.x",
     dependencies = {
-      "nvim-tree/nvim-web-devicons"
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
     }
   }
 })
@@ -91,7 +92,7 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
 vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
-vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<cr>", { silent = true })
+-- vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
