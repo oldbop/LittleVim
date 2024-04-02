@@ -18,7 +18,7 @@ set.tabstop = 2
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Disable netrw, neo-tree is used instead
+-- Disable netrw, neo-tree.nvim is used instead
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -73,7 +73,9 @@ require("lazy").setup({
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      window = { position = "float" }
+      popup_border_style = "rounded",
+      window = { position = "float" },
+      filesystem = { filtered_items = { visible = true }}
     },
     branch = "v3.x",
     dependencies = {
@@ -92,7 +94,7 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
 vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
--- vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<cr>", { silent = true })
+vim.keymap.set("n", "<leader>t", ":Neotree toggle<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
