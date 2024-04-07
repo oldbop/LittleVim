@@ -63,6 +63,13 @@ require("lazy").setup({
     priority = 1000
   },
   {
+    "navarasu/onedark.nvim",
+    name = "onedark",
+    opts = { style = "warmer" },
+    lazy = false,
+    priority = 1000
+  },
+  {
     "akinsho/bufferline.nvim",
     config = true,
     version = "*",
@@ -71,10 +78,17 @@ require("lazy").setup({
     }
   },
   {
+    "akinsho/toggleterm.nvim",
+    opts = {
+      open_mapping = [[<c-\>]],
+      direction = "float"
+    },
+    version = "*"
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      popup_border_style = "rounded",
-      window = { position = "float" },
+      window = { position = "current" },
       filesystem = { filtered_items = { visible = true }}
     },
     branch = "v3.x",
@@ -83,11 +97,15 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim"
     }
+  },
+  {
+    "tikhomirov/vim-glsl",
+    lazy = false
   }
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("moonfly")
+vim.cmd.colorscheme("onedark")
 
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
