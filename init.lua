@@ -111,7 +111,7 @@ require("lazy").setup({
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("onedark")
 
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
