@@ -58,14 +58,19 @@ require("lazy").setup({
   },
   {
     "bluz71/vim-moonfly-colors",
-    name = "moonfly",
     lazy = false,
     priority = 1000
   },
   {
     "navarasu/onedark.nvim",
-    name = "onedark",
     opts = { style = "warmer" },
+    lazy = false,
+    priority = 1000
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = { variant = "main" },
     lazy = false,
     priority = 1000
   },
@@ -80,7 +85,7 @@ require("lazy").setup({
   {
     "akinsho/toggleterm.nvim",
     opts = {
-      open_mapping = [[<c-\>]],
+      open_mapping = "<C-p>",
       direction = "float"
     },
     version = "*"
@@ -88,7 +93,8 @@ require("lazy").setup({
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      window = { position = "current" },
+      popup_border_style = "rounded",
+      window = { position = "float" },
       filesystem = { filtered_items = { visible = true }}
     },
     branch = "v3.x",
@@ -105,7 +111,7 @@ require("lazy").setup({
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("onedark")
+vim.cmd.colorscheme("rose-pine")
 
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
