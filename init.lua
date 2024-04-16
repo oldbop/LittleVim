@@ -113,6 +113,11 @@ require("lazy").setup({
 -- Set colorscheme
 vim.cmd.colorscheme("onedark")
 
+-- Autocmd to disable line numbers on terminal buffers
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  command = "setlocal nonumber norelativenumber"
+})
+
 -- Keymaps
 vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
@@ -124,6 +129,8 @@ vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
+
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<Tab>", function()
   if vim.fn["vsnip#jumpable"](1) == 1 then
