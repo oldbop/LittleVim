@@ -63,32 +63,9 @@ require("lazy").setup({
   },
   {
     "navarasu/onedark.nvim",
-    opts = { style = "warmer" },
+    opts = { style = "darker" },
     lazy = false,
     priority = 1000
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    opts = { variant = "main" },
-    lazy = false,
-    priority = 1000
-  },
-  {
-    "akinsho/bufferline.nvim",
-    config = true,
-    version = "*",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    }
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    opts = {
-      open_mapping = "<C-p>",
-      direction = "float"
-    },
-    version = "*"
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
