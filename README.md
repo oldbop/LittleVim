@@ -7,5 +7,4 @@ A simple Neovim configuration with a minimal set of included plugins.
 - Code completion with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - Easy file exploration with [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - Efficient plugin management with [lazy.nvim](https://github.com/folke/lazy.nvim)
-- Snazzy buffer line ([bufferline.nvim](https://github.com/akinsho/bufferline.nvim))
 - Single-file (~200 lines of lua)
