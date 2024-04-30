@@ -6,6 +6,7 @@
 -- Vim options
 local set = vim.opt
 set.autoindent = true
+set.background = "dark"
 set.clipboard = "unnamedplus"
 set.expandtab = true
 set.mouse = "a"
@@ -68,6 +69,12 @@ require("lazy").setup({
     priority = 1000
   },
   {
+    "ellisonleao/gruvbox.nvim",
+    opts = { contrast = "hard" },
+    lazy = false,
+    priority = 1000
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       popup_border_style = "rounded",
@@ -88,7 +95,7 @@ require("lazy").setup({
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("onedark")
+vim.cmd.colorscheme("gruvbox")
 
 -- Autocmd to disable line numbers on terminal buffers
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
