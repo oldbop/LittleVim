@@ -44,7 +44,8 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
+      "onsails/lspkind.nvim"
     }
   },
   {
@@ -56,6 +57,24 @@ require("lazy").setup({
       "hrsh7th/cmp-vsnip",
       "hrsh7th/vim-vsnip"
     }
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      popup_border_style = "rounded",
+      window = { position = "float" },
+      filesystem = { filtered_items = { visible = true }}
+    },
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
+    }
+  },
+  {
+    "tikhomirov/vim-glsl",
+    lazy = false
   },
   {
     "bluz71/vim-moonfly-colors",
@@ -75,27 +94,14 @@ require("lazy").setup({
     priority = 1000
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      popup_border_style = "rounded",
-      window = { position = "float" },
-      filesystem = { filtered_items = { visible = true }}
-    },
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim"
-    }
-  },
-  {
-    "tikhomirov/vim-glsl",
-    lazy = false
+    "Mofiqul/dracula.nvim",
+    lazy = false,
+    priority = 1000
   }
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("dracula")
 
 -- Autocmd to disable line numbers on terminal buffers
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
@@ -133,6 +139,7 @@ vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
 end, { expr = true, remap = true })
 
 -- Completion configuration
+local kind = require("lspkind")
 local cmp = require("cmp")
 
 cmp.setup({
@@ -159,7 +166,14 @@ cmp.setup({
     {
       { name = "buffer" }
     }
-  )
+  ),
+  formatting = {
+    format = kind.cmp_format({
+      mode = "symbol_text",
+      maxwidth = 50,
+      ellipsis_char = '...'
+    })
+  }
 })
 
 -- LSP configuration
