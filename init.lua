@@ -14,14 +14,11 @@ set.number = true
 set.shiftwidth = 2
 set.softtabstop = 2
 set.tabstop = 2
+set.wildoptions = "tagfile"
 
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Disable netrw, neo-tree.nvim is used instead
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 -- lazy.nvim installation
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -56,20 +53,6 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-vsnip",
       "hrsh7th/vim-vsnip"
-    }
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      popup_border_style = "rounded",
-      window = { position = "float" },
-      filesystem = { filtered_items = { visible = true }}
-    },
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim"
     }
   },
   {
@@ -113,7 +96,6 @@ vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
 vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
 vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
-vim.keymap.set("n", "<leader>t", ":Neotree toggle<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
