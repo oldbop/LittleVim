@@ -14,6 +14,7 @@ set.number = true
 set.shiftwidth = 2
 set.softtabstop = 2
 set.tabstop = 2
+set.termguicolors = true
 set.wildoptions = "tagfile"
 
 -- Leader key
@@ -84,7 +85,7 @@ require("lazy").setup({
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("dracula")
+vim.cmd.colorscheme("novel")
 
 -- Autocmd to disable line numbers on terminal buffers
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
