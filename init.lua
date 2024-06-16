@@ -42,45 +42,24 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "onsails/lspkind.nvim"
+      "williamboman/mason-lspconfig.nvim"
     }
   },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip"
+      "hrsh7th/vim-vsnip",
+      "onsails/lspkind.nvim"
     }
   },
   {
     "tikhomirov/vim-glsl",
     lazy = false
-  },
-  {
-    "bluz71/vim-moonfly-colors",
-    lazy = false,
-    priority = 1000
-  },
-  {
-    "navarasu/onedark.nvim",
-    opts = { style = "darker" },
-    lazy = false,
-    priority = 1000
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    opts = { contrast = "hard" },
-    lazy = false,
-    priority = 1000
-  },
-  {
-    "Mofiqul/dracula.nvim",
-    lazy = false,
-    priority = 1000
   }
 })
 
@@ -141,6 +120,7 @@ cmp.setup({
   sources = cmp.config.sources(
     {
       { name = "nvim_lsp" },
+      { name = "nvim_lsp_signature_help" },
       { name = "vsnip" }
     },
     {
@@ -152,7 +132,7 @@ cmp.setup({
   ),
   formatting = {
     format = kind.cmp_format({
-      mode = "symbol_text",
+      mode = "symbol",
       maxwidth = 50,
       ellipsis_char = '...'
     })
