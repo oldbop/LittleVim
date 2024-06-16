@@ -12,6 +12,7 @@ set.expandtab = true
 set.mouse = "a"
 set.number = true
 set.shiftwidth = 2
+set.signcolumn = "number"
 set.softtabstop = 2
 set.tabstop = 2
 set.termguicolors = true

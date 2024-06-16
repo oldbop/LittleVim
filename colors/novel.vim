@@ -76,7 +76,7 @@ hi RedrawDebugComposed guifg=#000000 guibg=#5fff5f gui=NONE cterm=NONE
 hi RedrawDebugNormal guifg=#000000 guibg=#87ffff gui=NONE cterm=NONE
 hi RedrawDebugRecompose guifg=#000000 guibg=#ff0000 gui=NONE cterm=NONE
 hi Search guifg=#000000 guibg=#ffffaf gui=NONE cterm=NONE
-hi SignColumn guifg=NONE guibg=#1c1c1c gui=NONE cterm=NONE
+hi SignColumn guifg=NONE guibg=NONE gui=NONE cterm=NONE
 hi Special guifg=#ffffff guibg=NONE gui=NONE cterm=NONE
 hi SpecialKey guifg=#ffffff guibg=NONE gui=NONE cterm=NONE
 hi SpellBad guifg=#ffffff guibg=NONE guisp=#ff0000 gui=undercurl cterm=underline
