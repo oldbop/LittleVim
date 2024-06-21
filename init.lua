@@ -50,7 +50,6 @@ require("lazy").setup({
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-vsnip",
@@ -82,6 +81,7 @@ vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
+vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, {})
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 
@@ -121,7 +121,6 @@ cmp.setup({
   sources = cmp.config.sources(
     {
       { name = "nvim_lsp" },
-      { name = "nvim_lsp_signature_help" },
       { name = "vsnip" }
     },
     {
