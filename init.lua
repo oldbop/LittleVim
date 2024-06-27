@@ -161,5 +161,11 @@ require("mason-lspconfig").setup_handlers {
     require("lspconfig")[server_name].setup {
       capabilities = capabilities
     }
+  end,
+  ["clangd"] = function()
+    require("lspconfig").clangd.setup {
+      capabilities = capabilities,
+      cmd = { "clangd", "--header-insertion=never" }
+    }
   end
 }
