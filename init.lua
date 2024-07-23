@@ -72,17 +72,13 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 })
 
 -- Keymaps
-vim.keymap.set("n", "<leader>n", ":bn<cr>", { silent = true })
-vim.keymap.set("n", "<leader>p", ":bp<cr>", { silent = true })
-vim.keymap.set("n", "<leader>c", ":bd<cr>", { silent = true })
-vim.keymap.set("n", "<leader>s", ":wa<cr>", { silent = true })
-
 vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, {})
 
+vim.keymap.set("n", "<leader>c", ":lua vim.g.togglecmp = not vim.g.togglecmp<cr>", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<Tab>", function()
@@ -104,6 +100,8 @@ end, { expr = true, remap = true })
 -- Completion configuration
 local kind = require("lspkind")
 local cmp = require("cmp")
+
+vim.g.togglecmp = false
 
 cmp.setup({
   snippet = {
@@ -132,11 +130,14 @@ cmp.setup({
   ),
   formatting = {
     format = kind.cmp_format({
-      mode = "symbol",
+      mode = "symbol_text",
       maxwidth = 50,
       ellipsis_char = '...'
     })
-  }
+  },
+  enabled = function()
+    return vim.g.togglecmp
+  end
 })
 
 -- LSP configuration
