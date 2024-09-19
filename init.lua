@@ -9,6 +9,7 @@ set.autoindent = true
 set.background = "dark"
 set.clipboard = "unnamedplus"
 set.expandtab = true
+set.laststatus = 1
 set.mouse = "a"
 set.number = true
 set.shiftwidth = 2
@@ -68,7 +69,15 @@ vim.cmd.colorscheme("novel")
 
 -- Autocmd to disable line numbers on terminal buffers
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = vim.api.nvim_create_augroup("term_mode", { clear = false }),
   command = "setlocal nonumber norelativenumber"
+})
+
+-- Autocmd to enter terminal mode automatically
+vim.api.nvim_create_autocmd({ "TermOpen", "WinEnter" }, {
+  group = vim.api.nvim_create_augroup("term_mode", { clear = false }),
+  pattern = "term://*",
+  command = "startinsert"
 })
 
 -- Keymaps
@@ -78,8 +87,20 @@ vim.keymap.set("n", "<leader>r", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, {})
 
-vim.keymap.set("n", "<leader>c", ":lua vim.g.togglecmp = not vim.g.togglecmp<cr>", { silent = true })
+vim.keymap.set("n", "<leader>t", ":bot 10sp +term<cr>", { silent = true })
+
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("t", "<C-w><C-w>", "<C-\\><C-n><C-w><C-w>", { silent = true })
+
+vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { silent = true })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { silent = true })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { silent = true })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { silent = true })
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<Tab>", function()
   if vim.fn["vsnip#jumpable"](1) == 1 then
@@ -101,9 +122,8 @@ end, { expr = true, remap = true })
 local kind = require("lspkind")
 local cmp = require("cmp")
 
-vim.g.togglecmp = false
-
 cmp.setup({
+  completion = { autocomplete = false },
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
@@ -134,10 +154,7 @@ cmp.setup({
       maxwidth = 50,
       ellipsis_char = '...'
     })
-  },
-  enabled = function()
-    return vim.g.togglecmp
-  end
+  }
 })
 
 -- LSP configuration
