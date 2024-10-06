@@ -67,15 +67,16 @@ require("lazy").setup({
 -- Set colorscheme
 vim.cmd.colorscheme("novel")
 
--- Autocmd to disable line numbers on terminal buffers
+-- Terminal mode autocmds
+vim.api.nvim_create_augroup("term_mode", { clear = true })
+
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  group = vim.api.nvim_create_augroup("term_mode", { clear = false }),
+  group = "term_mode",
   command = "setlocal nonumber norelativenumber"
 })
 
--- Autocmd to enter terminal mode automatically
 vim.api.nvim_create_autocmd({ "TermOpen", "WinEnter" }, {
-  group = vim.api.nvim_create_augroup("term_mode", { clear = false }),
+  group = "term_mode",
   pattern = "term://*",
   command = "startinsert"
 })
@@ -163,8 +164,7 @@ vim.diagnostic.config({ virtual_text = false })
 vim.o.updatetime = 250
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
-  group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-  callback = function ()
+  callback = function()
     vim.diagnostic.open_float(nil, { focus = false })
   end
 })
