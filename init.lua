@@ -23,6 +23,9 @@ set.wildoptions = "tagfile"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Toggle-completion boolean
+vim.g.togglecmp = true
+
 -- lazy.nvim installation
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -103,6 +106,10 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
+vim.keymap.set({ "i", "n" }, "<C-a>", function()
+  vim.g.togglecmp = not vim.g.togglecmp
+end, { silent = true })
+
 vim.keymap.set({ "i", "s" }, "<Tab>", function()
   if vim.fn["vsnip#jumpable"](1) == 1 then
     return "<Plug>(vsnip-jump-next)"
@@ -124,7 +131,9 @@ local kind = require("lspkind")
 local cmp = require("cmp")
 
 cmp.setup({
-  completion = { autocomplete = false },
+  enabled = function()
+    return vim.g.togglecmp
+  end,
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
