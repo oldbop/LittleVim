@@ -9,7 +9,6 @@ set.autoindent = true
 set.background = "dark"
 set.clipboard = "unnamedplus"
 set.expandtab = true
-set.laststatus = 1
 set.mouse = "a"
 set.number = true
 set.shiftwidth = 2
