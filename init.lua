@@ -63,11 +63,29 @@ require("lazy").setup({
   {
     "tikhomirov/vim-glsl",
     lazy = false
+  },
+  {
+    "navarasu/onedark.nvim",
+    opts = {
+      style = "deep",
+      transparent = true
+    },
+    lazy = false,
+    priority = 1000
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      contrast = "hard",
+      transparent_mode = true
+    },
+    lazy = false,
+    priority = 1000
   }
 })
 
 -- Set colorscheme
-vim.cmd.colorscheme("novel")
+vim.cmd.colorscheme("gruvbox")
 
 -- Terminal mode autocmds
 vim.api.nvim_create_augroup("term_mode", { clear = true })
