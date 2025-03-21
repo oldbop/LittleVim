@@ -123,6 +123,8 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
+vim.keymap.set("n", "<Esc>", ":noh<cr>", { silent = true })
+
 vim.keymap.set({ "i", "n" }, "<C-a>", function()
   vim.g.togglecmp = not vim.g.togglecmp
 end, { silent = true })
